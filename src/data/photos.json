@@ -1,0 +1,846 @@
+{
+  "count": 26,
+  "galleryExhibitCount": 25,
+  "scope": "25 original gallery images plus NASA DART Falcon9 fairing reference for the 3D model",
+  "photos": [
+    {
+      "id": "saturnv",
+      "n": "Saturn V",
+      "title": "土星五号",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Apollo_11_Launch_-_GPN-2000-000630.jpg/960px-Apollo_11_Launch_-_GPN-2000-000630.jpg",
+      "file": "Apollo_11_Launch_-_GPN-2000-000630.jpg",
+      "credit": "NASA",
+      "license": "Public domain",
+      "cap": "阿波罗11号发射实拍，1969年；三级阿波罗构型，不是天空实验室两级型。",
+      "parts": [
+        [
+          0.45,
+          0.21,
+          "顶部",
+          "顶部是阿波罗飞船与逃逸系统所在区域，不是整枚火箭的发动机。"
+        ],
+        [
+          0.45,
+          0.48,
+          "箭身",
+          "黑白相间的长箭身包含多级结构；照片上的色块不能直接当成准确分级线。"
+        ],
+        [
+          0.45,
+          0.74,
+          "尾部",
+          "最下方是起飞动力所在区域；火焰不是火箭本体的一部分。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Apollo_11_Launch_-_GPN-2000-000630.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/1/16/Apollo_11_Launch_-_GPN-2000-000630.jpg"
+    },
+    {
+      "id": "cz2f",
+      "n": "Chang Zheng 2F/G",
+      "title": "长征二号F",
+      "c": "CN",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/9/9a/LM2F-Y13.png",
+      "file": "LM2F-Y13.png",
+      "credit": "中国新闻社",
+      "license": "CC BY 4.0",
+      "cap": "搭载神舟十三号的遥十三火箭；载人改进构型，不代表所有二号F版本。",
+      "parts": [
+        [
+          0.5,
+          0.04,
+          "逃逸塔",
+          "最顶部细长的结构是逃逸塔，用于紧急情况下帮助飞船离开火箭。"
+        ],
+        [
+          0.5,
+          0.26,
+          "飞船保护区",
+          "神舟飞船位于顶部保护结构内；这张外观照片看不到飞船内部。"
+        ],
+        [
+          0.58,
+          0.78,
+          "侧助推器",
+          "箭体侧面较短的圆柱是助推器；与中央芯级一起帮助起飞。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:LM2F-Y13.png",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/9/9a/LM2F-Y13.png"
+    },
+    {
+      "id": "soyuzfg",
+      "n": "Soyuz-FG",
+      "title": "联盟FG",
+      "c": "RU",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Soyuz_TMA-3_launch.jpg/960px-Soyuz_TMA-3_launch.jpg",
+      "file": "Soyuz_TMA-3_launch.jpg",
+      "credit": "NASA／Bill Ingalls",
+      "license": "Public domain",
+      "cap": "2003年联盟TMA-3任务实拍；火箭是联盟FG，TMA-3是飞船任务名称。",
+      "parts": [
+        [
+          0.49,
+          0.06,
+          "顶部",
+          "细长逃逸系统在最上方，载人飞船在下面的保护罩内。"
+        ],
+        [
+          0.5,
+          0.44,
+          "中央箭体",
+          "中央箭体很长，旁边还有较短的助推器；它们不是五枚独立卫星火箭。"
+        ],
+        [
+          0.45,
+          0.76,
+          "侧助推器",
+          "四枚侧助推器从不同角度看会互相遮挡，照片里不一定能同时数清四枚。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Soyuz_TMA-3_launch.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/9/94/Soyuz_TMA-3_launch.jpg"
+    },
+    {
+      "id": "falcon9",
+      "n": "Falcon 9 Block 5",
+      "title": "猎鹰九号 Block 5",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/SpaceX_Demo-2_Launch_%28NHQ202005300044%29_%28cropped%29.jpg/960px-SpaceX_Demo-2_Launch_%28NHQ202005300044%29_%28cropped%29.jpg",
+      "file": "SpaceX_Demo-2_Launch_(NHQ202005300044)_(cropped).jpg",
+      "credit": "NASA／Joel Kowsky；原图已裁切",
+      "license": "Public domain",
+      "cap": "2020年Demo-2载人任务；顶部是载人龙飞船，不是普通卫星整流罩。",
+      "parts": [
+        [
+          0.592,
+          0.075,
+          "龙飞船",
+          "顶部搭载的是载人龙飞船；载人任务与卫星任务的头部外观不同。"
+        ],
+        [
+          0.594,
+          0.25,
+          "两级箭体",
+          "猎鹰九号是两级火箭；这张照片没有剖开结构，不把任意涂装线当成级间分界。"
+        ],
+        [
+          0.594,
+          0.388,
+          "一级尾部",
+          "尾部动力区属于第一级。可回收的是一级等部分硬件，不是整枚系统都回收。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:SpaceX_Demo-2_Launch_(NHQ202005300044)_(cropped).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/2/2b/SpaceX_Demo-2_Launch_%28NHQ202005300044%29_%28cropped%29.jpg"
+    },
+    {
+      "id": "cz5b",
+      "n": "Chang Zheng 5B",
+      "title": "长征五号B",
+      "c": "CN",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Launching_Tianhe_Core_Module.jpg",
+      "file": "Launching_Tianhe_Core_Module.jpg",
+      "credit": "中国新闻社",
+      "license": "CC BY 4.0",
+      "cap": "天和核心舱发射实拍；对应长征五号B，不冒充普通长征五号。",
+      "parts": [
+        [
+          0.6,
+          0.35,
+          "大整流罩",
+          "顶部宽大的保护罩内是空间站舱段；保护罩不是载荷本身。"
+        ],
+        [
+          0.6,
+          0.53,
+          "中央芯级",
+          "中央粗大的箭体是芯级。照片不能显示内部贮箱和管路。"
+        ],
+        [
+          0.72,
+          0.76,
+          "侧助推器",
+          "外侧较短的助推器帮助起飞；支撑塔架不是火箭的一部分。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Launching_Tianhe_Core_Module.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Launching_Tianhe_Core_Module.jpg"
+    },
+    {
+      "id": "proton",
+      "n": "Proton-M/Briz-M",
+      "title": "质子M／微风M",
+      "c": "RU",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/Proton-M_Being_Readied_for_Rollout%2C_January_2005.jpg/960px-Proton-M_Being_Readied_for_Rollout%2C_January_2005.jpg",
+      "file": "Proton-M_Being_Readied_for_Rollout,_January_2005.jpg",
+      "credit": "alexpgp；原文件由两张照片拼接",
+      "license": "CC BY-SA 2.0",
+      "cap": "2005年AMC-12任务准备阶段，在厂房内水平放置；不是发射姿态照片。",
+      "parts": [
+        [
+          0.22,
+          0.34,
+          "头部在图片左端",
+          "火箭水平放置，图片左端是载荷罩所在方向；不能总把照片上方当作火箭头部。"
+        ],
+        [
+          0.53,
+          0.45,
+          "中央箭体",
+          "长筒形箭体连接各级；图片拼接产生的透视不用于测量。"
+        ],
+        [
+          0.83,
+          0.55,
+          "尾部在图片右端",
+          "右端为一级尾部方向。质子号底部的外侧贮箱不能简单套称独立侧助推器。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Proton-M_Being_Readied_for_Rollout%2C_January_2005.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Proton-M_Being_Readied_for_Rollout%2C_January_2005.jpg"
+    },
+    {
+      "id": "shuttle",
+      "n": "Space Shuttle",
+      "title": "航天飞机发射系统",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/STS120LaunchHiRes-edit1.jpg/960px-STS120LaunchHiRes-edit1.jpg",
+      "file": "STS120LaunchHiRes-edit1.jpg",
+      "credit": "NASA；jjron作倾斜校正",
+      "license": "Public domain",
+      "cap": "发现号STS-120任务实拍；轨道器、外贮箱和两枚助推器共同组成发射系统。",
+      "parts": [
+        [
+          0.7,
+          0.24,
+          "橙色外贮箱",
+          "橙色大结构是外贮箱，不是乘员舱，也不是完整火箭。"
+        ],
+        [
+          0.61,
+          0.4,
+          "白色轨道器",
+          "有机翼的白色部分是航天飞机轨道器；乘员在这里。"
+        ],
+        [
+          0.8,
+          0.5,
+          "固体助推器",
+          "两侧长白色助推器帮助系统起飞，不能与中央外贮箱混淆。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:STS120LaunchHiRes-edit1.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/d/d6/STS120LaunchHiRes-edit1.jpg"
+    },
+    {
+      "id": "cz7",
+      "n": "Chang Zheng 7",
+      "title": "长征七号",
+      "c": "CN",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/3/39/Long_March_7_Y6.jpg",
+      "file": "Long_March_7_Y6.jpg",
+      "credit": "中国新闻社",
+      "license": "CC BY 4.0",
+      "cap": "遥六火箭的发射前实拍，外形清晰；不代表增加上面级的长征七号A。",
+      "parts": [
+        [
+          0.5,
+          0.25,
+          "整流罩",
+          "最上方保护载荷的结构称整流罩，进入稀薄大气后可以抛掉。"
+        ],
+        [
+          0.5,
+          0.48,
+          "芯级",
+          "中央较长的部分是芯级；外观照片并非内部工程图。"
+        ],
+        [
+          0.46,
+          0.68,
+          "侧助推器",
+          "侧面较短的火箭体是助推器，旁边建筑物属于发射设施。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Long_March_7_Y6.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/3/39/Long_March_7_Y6.jpg"
+    },
+    {
+      "id": "angara",
+      "n": "Angara A5",
+      "title": "安加拉A5",
+      "c": "RU",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Launch_of_the_Angara-A5_from_the_Plesetsk_cosmodrome_%282025-06-19%29_05.jpg/960px-Launch_of_the_Angara-A5_from_the_Plesetsk_cosmodrome_%282025-06-19%29_05.jpg",
+      "file": "Launch_of_the_Angara-A5_from_the_Plesetsk_cosmodrome_(2025-06-19)_05.jpg",
+      "credit": "俄罗斯国防部公开图像；原页未列具体摄影者",
+      "license": "CC BY 4.0",
+      "cap": "2025年普列谢茨克发射实拍；这里展示A5家族外形，不判断所有任务上面级配置。",
+      "parts": [
+        [
+          0.527,
+          0.14,
+          "顶部载荷区",
+          "上方白色罩体保护载荷；具体上面级不能只凭这张远景照片判定。"
+        ],
+        [
+          0.525,
+          0.39,
+          "中央模块",
+          "中央箭体与外侧模块组合，是安加拉的模块化设计思路。"
+        ],
+        [
+          0.543,
+          0.43,
+          "外侧模块",
+          "周围的助推模块共同工作；烟雾可能遮住一部分结构。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Launch_of_the_Angara-A5_from_the_Plesetsk_cosmodrome_(2025-06-19)_05.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/9/92/Launch_of_the_Angara-A5_from_the_Plesetsk_cosmodrome_%282025-06-19%29_05.jpg"
+    },
+    {
+      "id": "atlas",
+      "n": "Atlas V 401",
+      "title": "宇宙神V 401",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/MRO-launch.jpg/960px-MRO-launch.jpg",
+      "file": "MRO-launch.jpg",
+      "credit": "NASA图像；见原文件来源",
+      "license": "Public domain",
+      "cap": "2005年火星勘测轨道器MRO发射；401构型，没有外绑固体助推器。",
+      "parts": [
+        [
+          0.55,
+          0.2,
+          "整流罩",
+          "顶部整流罩保护MRO探测器；火箭与探测器是两个不同的东西。"
+        ],
+        [
+          0.55,
+          0.5,
+          "芯级",
+          "中央较粗的液体芯级提供起飞动力；401与其他编号的外形可能不同。"
+        ],
+        [
+          0.55,
+          0.78,
+          "尾部",
+          "这个401构型没有外绑固体助推器。不要用它代表551等构型。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:MRO-launch.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/8/83/MRO-launch.jpg"
+    },
+    {
+      "id": "cz3b",
+      "n": "Chang Zheng 3B",
+      "title": "长征三号乙",
+      "c": "CN",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/The_Launch_of_Long_March_3B_Rocket.jpg/960px-The_Launch_of_Long_March_3B_Rocket.jpg",
+      "file": "The Launch of Long March 3B Rocket.jpg",
+      "credit": "AAxanderr；Commons原文件",
+      "license": "Public domain",
+      "cap": "西昌发射实拍；用于三号乙家族外形识别，不能据此判定全部增强批次。",
+      "parts": [
+        [
+          0.62,
+          0.18,
+          "整流罩",
+          "细长头部保护卫星，夜景下的颜色和白天可能不同。"
+        ],
+        [
+          0.62,
+          0.35,
+          "中央箭体",
+          "中央是多级串联的箭体；看照片不能精确量出各级长度。"
+        ],
+        [
+          0.65,
+          0.48,
+          "侧助推器",
+          "三号乙有侧助推器，与三号甲等构型应分开看。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:The_Launch_of_Long_March_3B_Rocket.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/2/2f/The_Launch_of_Long_March_3B_Rocket.jpg"
+    },
+    {
+      "id": "n1",
+      "n": "N-1 11A52",
+      "title": "苏联N-1",
+      "c": "SU",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/d/d3/N1_1M1_mockup_on_the_launch_pad_at_the_Baikonur_Cosmodrome_in_late_1967.jpg",
+      "file": "N1_1M1_mockup_on_the_launch_pad_at_the_Baikonur_Cosmodrome_in_late_1967.jpg",
+      "credit": "美国国家侦察局解密历史图像",
+      "license": "Public domain",
+      "cap": "1967年1M1全尺寸地面模型的真实照片，不是某次飞行箭升空照片。",
+      "parts": [
+        [
+          0.36,
+          0.1,
+          "顶部",
+          "细长顶部之下是逐渐变宽的结构，这是N-1有辨识度的外形。"
+        ],
+        [
+          0.36,
+          0.45,
+          "锥形箭体",
+          "箭体由上而下越来越宽；这里是地面全尺寸模型，不能观察到真实发动机工作。"
+        ],
+        [
+          0.36,
+          0.83,
+          "宽大底部",
+          "宽大的底部与周围服务塔分开辨认；N-1四次实际飞行都未入轨。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:N1_1M1_mockup_on_the_launch_pad_at_the_Baikonur_Cosmodrome_in_late_1967.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/d/d3/N1_1M1_mockup_on_the_launch_pad_at_the_Baikonur_Cosmodrome_in_late_1967.jpg"
+    },
+    {
+      "id": "titan",
+      "n": "Titan II GLV",
+      "title": "大力神II GLV",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Gemini-Titan_11_Launch_-_GPN-2000-001020.jpg/960px-Gemini-Titan_11_Launch_-_GPN-2000-001020.jpg",
+      "file": "Gemini-Titan_11_Launch_-_GPN-2000-001020.jpg",
+      "credit": "NASA／肯尼迪航天中心",
+      "license": "Public domain",
+      "cap": "双子座11号任务发射实拍；这是载人GLV，不是大力神III或IV。",
+      "parts": [
+        [
+          0.48,
+          0.14,
+          "双子座飞船",
+          "顶部的小型飞船搭载航天员，不是火箭发动机。"
+        ],
+        [
+          0.52,
+          0.4,
+          "两级箭体",
+          "两级大力神II没有大力神III重型构型那样的巨大侧助推器。"
+        ],
+        [
+          0.55,
+          0.66,
+          "尾部动力区",
+          "尾部火焰附近是起飞动力区；照片不能显示发动机内部结构。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Gemini-Titan_11_Launch_-_GPN-2000-001020.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Gemini-Titan_11_Launch_-_GPN-2000-001020.jpg"
+    },
+    {
+      "id": "cz11",
+      "n": "Chang Zheng 11",
+      "title": "长征十一号",
+      "c": "CN",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/2/20/%E2%80%9C%E4%B8%80%E7%AE%AD%E5%9B%9B%E6%98%9F%E2%80%9D%EF%BC%81%E9%95%BF%E5%BE%81%E5%8D%81%E4%B8%80%E5%8F%B7%E9%81%A5%E5%85%AD%E7%81%AB%E7%AE%AD%E6%88%90%E5%8A%9F%E5%8F%91%E5%B0%841.png",
+      "file": "“一箭四星”！长征十一号遥六火箭成功发射1.png",
+      "credit": "中国新闻社；公开视频画面",
+      "license": "CC BY 4.0",
+      "cap": "遥六任务的实际发射画面；不是海射型的专用外形图。",
+      "parts": [
+        [
+          0.515,
+          0.4,
+          "头部",
+          "顶部小罩体保护卫星；小型火箭也能搭载多颗小卫星。"
+        ],
+        [
+          0.515,
+          0.52,
+          "细长箭体",
+          "长征十一号是多级固体运载火箭，外形与大型液体捆绑火箭不同。"
+        ],
+        [
+          0.515,
+          0.67,
+          "尾部",
+          "尾部火焰下方是烟雾，不能算进火箭高度。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:%E2%80%9C%E4%B8%80%E7%AE%AD%E5%9B%9B%E6%98%9F%E2%80%9D%EF%BC%81%E9%95%BF%E5%BE%81%E5%8D%81%E4%B8%80%E5%8F%B7%E9%81%A5%E5%85%AD%E7%81%AB%E7%AE%AD%E6%88%90%E5%8A%9F%E5%8F%91%E5%B0%841.png",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/2/20/%E2%80%9C%E4%B8%80%E7%AE%AD%E5%9B%9B%E6%98%9F%E2%80%9D%EF%BC%81%E9%95%BF%E5%BE%81%E5%8D%81%E4%B8%80%E5%8F%B7%E9%81%A5%E5%85%AD%E7%81%AB%E7%AE%AD%E6%88%90%E5%8A%9F%E5%8F%91%E5%B0%841.png"
+    },
+    {
+      "id": "rokot",
+      "n": "Rokot",
+      "title": "轰鸣号",
+      "c": "RU",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/6/66/Rokot_Rocket.jpg",
+      "file": "Rokot_Rocket.jpg",
+      "credit": "俄罗斯国防部",
+      "license": "CC BY 4.0",
+      "cap": "搭载信使M卫星的轰鸣号发射实拍；仅用于公开航天外形观察。",
+      "parts": [
+        [
+          0.52,
+          0.16,
+          "整流罩",
+          "圆滑头部保护卫星；里面的载荷从外面看不到。"
+        ],
+        [
+          0.52,
+          0.38,
+          "箭身",
+          "较细长的箭体来自改装运载路线；本馆不展开军事制造结构。"
+        ],
+        [
+          0.52,
+          0.61,
+          "尾部",
+          "尾部与明亮的喷焰要分开看，亮焰不是金属箭体。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Rokot_Rocket.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/6/66/Rokot_Rocket.jpg"
+    },
+    {
+      "id": "saturnib",
+      "n": "Saturn IB",
+      "title": "土星IB",
+      "c": "US",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Saturn_IB_launch_configurations.jpg",
+      "file": "Saturn_IB_launch_configurations.jpg",
+      "credit": "NASA历史照片；JustinTime55拼图",
+      "license": "Public domain",
+      "cap": "三种真实发射构型的照片拼图：无飞船、登月舱及指令服务舱；不是三维模型。",
+      "parts": [
+        [
+          0.18,
+          0.18,
+          "不同的头部",
+          "拼图中的三枚火箭顶部不同，说明同一火箭可服务不同测试任务。"
+        ],
+        [
+          0.5,
+          0.53,
+          "共同的箭体",
+          "共有的下部设计把这些构型联系在同一家族中。拼图不保证相同拍摄比例。"
+        ],
+        [
+          0.83,
+          0.79,
+          "底部",
+          "土星IB与土星五号不是一枚火箭的两个名称，大小与结构不同。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Saturn_IB_launch_configurations.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Saturn_IB_launch_configurations.jpg"
+    },
+    {
+      "id": "zhuque3",
+      "n": "Zhuque-3",
+      "title": "朱雀三号",
+      "c": "CN",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/a/a2/%E9%9D%99%E6%80%81%E7%82%B9%E7%81%AB%E6%B5%8B%E8%AF%95%E5%89%8D%E7%9A%84%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E8%BF%90%E8%BD%BD%E7%81%AB%E7%AE%AD%EF%BC%88%E9%81%A5%E4%B8%80%EF%BC%89.jpg",
+      "file": "静态点火测试前的朱雀三号运载火箭（遥一）.jpg",
+      "credit": "中国新闻社；公开视频画面",
+      "license": "CC BY 3.0",
+      "cap": "2025年遥一箭在静态点火前的真实竖立画面；比远处发射火焰更适合看外形。",
+      "parts": [
+        [
+          0.5,
+          0.1,
+          "顶部构型",
+          "可见顶部的试验构型与保护结构；这是静态点火前的照片，不据此判断每次任务的载荷罩。"
+        ],
+        [
+          0.5,
+          0.47,
+          "金属箭体",
+          "不锈钢箭体的外观与常见白色涂装火箭不同；照片不能证明具体内部材料厚度。"
+        ],
+        [
+          0.5,
+          0.85,
+          "一级尾部",
+          "一级设计目标包括回收；首飞入轨与首飞回收是两个结果，不能混记。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:%E9%9D%99%E6%80%81%E7%82%B9%E7%81%AB%E6%B5%8B%E8%AF%95%E5%89%8D%E7%9A%84%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E8%BF%90%E8%BD%BD%E7%81%AB%E7%AE%AD%EF%BC%88%E9%81%A5%E4%B8%80%EF%BC%89.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/a/a2/%E9%9D%99%E6%80%81%E7%82%B9%E7%81%AB%E6%B5%8B%E8%AF%95%E5%89%8D%E7%9A%84%E6%9C%B1%E9%9B%80%E4%B8%89%E5%8F%B7%E8%BF%90%E8%BD%BD%E7%81%AB%E7%AE%AD%EF%BC%88%E9%81%A5%E4%B8%80%EF%BC%89.jpg"
+    },
+    {
+      "id": "zenit",
+      "n": "Zenit-2",
+      "title": "天顶二号",
+      "c": "SU",
+      "img": "https://upload.wikimedia.org/wikipedia/commons/7/73/Zenit-2_rocket_ready_for_launch.jpg",
+      "file": "Zenit-2_rocket_ready_for_launch.jpg",
+      "credit": "Commons历史原文件；作者未署名",
+      "license": "Public domain",
+      "cap": "天顶二号发射前实拍；苏联设计源流，乌克兰制造体系，不说成俄罗斯单独原创。",
+      "parts": [
+        [
+          0.42,
+          0.14,
+          "整流罩",
+          "头部罩体保护卫星；有些外观相似的照片可能属于不同上面级构型。"
+        ],
+        [
+          0.42,
+          0.48,
+          "两级箭体",
+          "天顶二号采用两级基本构型，没有联盟式四枚侧助推器。"
+        ],
+        [
+          0.42,
+          0.82,
+          "底部与支架",
+          "辨认箭体底部和发射支架；发射设施不随火箭一起飞行。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Zenit-2_rocket_ready_for_launch.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/7/73/Zenit-2_rocket_ready_for_launch.jpg"
+    },
+    {
+      "id": "heavy",
+      "n": "Falcon Heavy",
+      "title": "重型猎鹰",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg/960px-Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg",
+      "file": "Falcon_Heavy_Demo_Mission_(39337245145).jpg",
+      "credit": "SpaceX",
+      "license": "CC0",
+      "cap": "2018年演示任务实拍；三个并排芯级外形清楚，不是猎鹰九号单芯级。",
+      "parts": [
+        [
+          0.49,
+          0.13,
+          "整流罩",
+          "中央顶部整流罩保护演示载荷，外侧助推器没有相同的卫星罩。"
+        ],
+        [
+          0.49,
+          0.44,
+          "中央芯级",
+          "中间的芯级与上面级连接，向上运送载荷。"
+        ],
+        [
+          0.46,
+          0.43,
+          "两枚侧助推器",
+          "两边各有一枚侧助推器；整枚系统并非简单把三枚完整猎鹰九号并排绑起来。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Falcon_Heavy_Demo_Mission_(39337245145).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Falcon_Heavy_Demo_Mission_%2839337245145%29.jpg"
+    },
+    {
+      "id": "gravity",
+      "n": "Yinli-1",
+      "title": "引力一号",
+      "c": "CN",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Gravity-1_Y2_launch_01.png/960px-Gravity-1_Y2_launch_01.png",
+      "file": "Gravity-1 Y2 launch 01.png",
+      "credit": "中国新闻社；公开视频画面，原文件已去除水印",
+      "license": "CC BY 4.0",
+      "cap": "遥二海射实际画面；这是远景，细节分辨率有限，不以烟雾推测看不清的结构。",
+      "parts": [
+        [
+          0.54,
+          0.43,
+          "顶部",
+          "细小的顶部在中央；远景可以识别总体轮廓，不能用于精确量尺寸。"
+        ],
+        [
+          0.54,
+          0.56,
+          "组合箭体",
+          "中央箭体与两侧助推器形成较宽的组合外形。"
+        ],
+        [
+          0.54,
+          0.8,
+          "海上发射平台",
+          "平台留在海上，不是火箭的一部分；喷焰和水汽可能遮挡尾部。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Gravity-1_Y2_launch_01.png",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/7/74/Gravity-1_Y2_launch_01.png"
+    },
+    {
+      "id": "soyuz2",
+      "n": "Soyuz-2-1B",
+      "title": "联盟2.1b",
+      "c": "RU",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Soyuz_2.1b_GLONASS-K2_13L_launch_01.jpg/960px-Soyuz_2.1b_GLONASS-K2_13L_launch_01.jpg",
+      "file": "Soyuz_2.1b_GLONASS-K2_13L_launch_01.jpg",
+      "credit": "俄罗斯国防部",
+      "license": "CC BY 4.0",
+      "cap": "格洛纳斯K2任务实拍；是联盟2.1b家族代表图，不代表每个上面级组合。",
+      "parts": [
+        [
+          0.6,
+          0.19,
+          "顶部卫星罩",
+          "这次顶部是卫星任务的保护罩，与联盟载人任务的顶部外形不同。"
+        ],
+        [
+          0.6,
+          0.42,
+          "中央箭体",
+          "中央箭体和侧助推器延续R-7发展路线，但内部系统已持续更新。"
+        ],
+        [
+          0.63,
+          0.55,
+          "侧助推器",
+          "侧助推器围绕中央芯级，发射塔在它们旁边而不是安装在火箭上。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Soyuz_2.1b_GLONASS-K2_13L_launch_01.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Soyuz_2.1b_GLONASS-K2_13L_launch_01.jpg"
+    },
+    {
+      "id": "sls",
+      "n": "SLS Block 1",
+      "title": "SLS Block 1",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Artemis_II_launch_%28SLS_MAF_20260401_ArtemisIILaunch_02%29_crop.jpg/960px-Artemis_II_launch_%28SLS_MAF_20260401_ArtemisIILaunch_02%29_crop.jpg",
+      "file": "Artemis_II_launch_(SLS_MAF_20260401_ArtemisIILaunch_02)_crop.jpg",
+      "credit": "NASA／Marshall；原图已裁切",
+      "license": "Public domain",
+      "cap": "阿尔忒弥斯II任务的NASA实拍；对应Block 1载人构型，不是未飞的其他Block方案。",
+      "parts": [
+        [
+          0.51,
+          0.2,
+          "猎户座区域",
+          "顶部搭载猎户座飞船与逃逸系统；不能从外形照片看见舱内乘员。"
+        ],
+        [
+          0.51,
+          0.48,
+          "橙色芯级",
+          "中央橙色部分是芯级，外观与航天飞机外贮箱相似不等于用途完全相同。"
+        ],
+        [
+          0.57,
+          0.65,
+          "白色助推器",
+          "两侧固体助推器帮助起飞；SLS不是航天飞机轨道器。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Artemis_II_launch_(SLS_MAF_20260401_ArtemisIILaunch_02)_crop.jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Artemis_II_launch_%28SLS_MAF_20260401_ArtemisIILaunch_02%29_crop.jpg"
+    },
+    {
+      "id": "newglenn",
+      "n": "New Glenn 7x2",
+      "title": "新格伦",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/New_Glenn_-_BlueBird_7_Launch_%289628277%29_%28cropped%29.jpg/960px-New_Glenn_-_BlueBird_7_Launch_%289628277%29_%28cropped%29.jpg",
+      "file": "New_Glenn_-_BlueBird_7_Launch_(9628277)_(cropped).jpg",
+      "credit": "美国太空军／Gwendolyn Kurzen；原图已裁切",
+      "license": "Public domain",
+      "cap": "2026年BlueBird 7任务升空实拍；照片只能证明外形和升空，不证明该次任务最终入轨成功。",
+      "parts": [
+        [
+          0.52,
+          0.16,
+          "整流罩",
+          "圆柱形大罩体保护载荷，与载人小型亚轨道新谢泼德不是同一系统。"
+        ],
+        [
+          0.52,
+          0.48,
+          "两级箭体",
+          "新格伦是两级轨道运载系统；首飞入轨与一级回收结果分开记录。"
+        ],
+        [
+          0.52,
+          0.79,
+          "一级底部",
+          "回收设计主要针对一级；不把设计目标当作每次都已实现的结果。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:New_Glenn_-_BlueBird_7_Launch_(9628277)_(cropped).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/2/24/New_Glenn_-_BlueBird_7_Launch_%289628277%29_%28cropped%29.jpg"
+    },
+    {
+      "id": "electron",
+      "n": "Electron",
+      "title": "电子号",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Rocket_Lab_PREFIRE_and_Ice_Launch_%28KSC-20240605-PH-RKL01_0005%29.jpg/960px-Rocket_Lab_PREFIRE_and_Ice_Launch_%28KSC-20240605-PH-RKL01_0005%29.jpg",
+      "file": "Rocket_Lab_PREFIRE_and_Ice_Launch_(KSC-20240605-PH-RKL01_0005).jpg",
+      "credit": "NASA／Rocket Lab",
+      "license": "Public domain",
+      "cap": "2024年PREFIRE任务，新西兰发射实拍；美国公司、具有新西兰渊源，不能按发射场简单定国籍。",
+      "parts": [
+        [
+          0.5,
+          0.19,
+          "整流罩",
+          "顶部小罩体保护小型科学卫星。"
+        ],
+        [
+          0.5,
+          0.35,
+          "黑色箭体",
+          "黑色箭身的外观很有辨识度，不能仅凭颜色推测所有内部材料。"
+        ],
+        [
+          0.5,
+          0.5,
+          "尾部",
+          "尾部亮焰来自动力系统；电子号与HASTE的任务用途不要混淆。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Rocket_Lab_PREFIRE_and_Ice_Launch_(KSC-20240605-PH-RKL01_0005).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/f/fb/Rocket_Lab_PREFIRE_and_Ice_Launch_%28KSC-20240605-PH-RKL01_0005%29.jpg"
+    },
+    {
+      "id": "pegasus",
+      "n": "Pegasus XL",
+      "title": "飞马座XL",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Launch_of_Pegasus_F43_from_Stargazer_%28KSC-20161215-PH_LAL02_0005%29.jpg/960px-Launch_of_Pegasus_F43_from_Stargazer_%28KSC-20161215-PH_LAL02_0005%29.jpg",
+      "file": "Launch_of_Pegasus_F43_from_Stargazer_(KSC-20161215-PH_LAL02_0005).jpg",
+      "credit": "NASA／Lori Losey",
+      "license": "Public domain",
+      "cap": "2016年CYGNSS任务空中释放后点火的真实照片；不是竖直发射台视角。",
+      "parts": [
+        [
+          0.6,
+          0.55,
+          "头部在图片右端",
+          "火箭朝图片右方飞行，顶部载荷区在前端，不要按照片上下方向判断。"
+        ],
+        [
+          0.55,
+          0.575,
+          "箭体与机翼",
+          "飞马座有帮助空射飞行的机翼，这是辨认它的一个线索。"
+        ],
+        [
+          0.48,
+          0.6,
+          "尾部喷焰",
+          "火焰拖在火箭后方；整条亮焰不能算作箭体长度。"
+        ]
+      ],
+      "filePage": "https://commons.wikimedia.org/wiki/File:Launch_of_Pegasus_F43_from_Stargazer_(KSC-20161215-PH_LAL02_0005).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/5/52/Launch_of_Pegasus_F43_from_Stargazer_%28KSC-20161215-PH_LAL02_0005%29.jpg"
+    },
+    {
+      "id": "dart-falcon9",
+      "n": "Falcon 9 Block 5",
+      "title": "猎鹰九号DART卫星罩构型",
+      "c": "US",
+      "img": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/DART_Prelaunch_%28NHQ202111230002%29.jpg/960px-DART_Prelaunch_%28NHQ202111230002%29.jpg",
+      "file": "DART_Prelaunch_(NHQ202111230002).jpg",
+      "credit": "NASA／Bill Ingalls",
+      "license": "Public domain",
+      "cap": "2021年DART任务发射前实拍；顶部为卫星整流罩。三维不复制这枚复用箭的烧蚀与逐项涂装。",
+      "parts": [],
+      "filePage": "https://commons.wikimedia.org/wiki/File:DART_Prelaunch_(NHQ202111230002).jpg",
+      "originalImage": "https://upload.wikimedia.org/wikipedia/commons/8/85/DART_Prelaunch_%28NHQ202111230002%29.jpg"
+    }
+  ]
+}
