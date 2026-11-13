@@ -1,4 +1,5 @@
 import { models, records, galleryPhotos, modeledRecordIds, photos } from '../data';
+import { lessons, lessonFor } from '../data/lessons';
 import { makeRocketMesh, meshBounds } from './rocketMesh';
 
 function assert(cond: unknown, message: string): void {
@@ -32,6 +33,11 @@ for (const model of models) {
   }
   const bodyBottom = ((model.profile[0][0] - model.height / 2) * 2) / model.height;
   assert(min[1] < bodyBottom - 0.01, `${model.id} has no geometry below the body (nozzles missing)`);
+  const used = new Set(mesh.faces.map((face) => face.part));
+  const expected = new Set(lessonFor(model.id).stages.map((stage) => stage.id));
+  for (const id of expected) assert(used.has(id), `${model.id} mesh is missing clickable part ${id}`);
+  for (const id of used) assert(expected.has(id), `${model.id} mesh has unlabeled part ${id}`);
+  for (const face of mesh.faces) assert(face.part.length > 0, `${model.id} face missing part`);
   const sig = `${mesh.faces.length}:${min.map((n) => n.toFixed(3)).join()}:${max.map((n) => n.toFixed(3)).join()}`;
   assert(!signatures.has(sig), `${model.id} geometry matches another model`);
   signatures.add(sig);
@@ -41,5 +47,12 @@ for (const model of models) {
 const byCountry = { US: 0, CN: 0, SU: 0, RU: 0 } as Record<string, number>;
 for (const m of models) byCountry[m.c] = (byCountry[m.c] || 0) + 1;
 assert(byCountry.US === 3 && byCountry.CN === 3 && byCountry.SU + byCountry.RU === 3, 'country split is not 3/3/3');
+assert(lessons.length === 9, `expected 9 lessons, got ${lessons.length}`);
+for (const model of models) {
+  const lesson = lessonFor(model.id);
+  assert(lesson.intro.includes('不是官方工程模型'), `${model.id} lesson missing disclaimer`);
+  assert(lesson.sources.length > 0 && lesson.stages.length >= 3, `${model.id} lesson is incomplete`);
+  assert(lesson.facts.length >= 2, `${model.id} needs two memorable facts`);
+}
 
 console.log('mesh checks ok');

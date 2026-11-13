@@ -1,4 +1,5 @@
-import { photos } from '../data';
+import { models, photos } from '../data';
+import { lessonFor } from '../data/lessons';
 import { DATE_NOTE } from './options';
 
 const families: { title: string; edges: string[] }[] = [
@@ -49,6 +50,34 @@ export function About() {
           <text x="36" y="230" fontSize="13" fill="#405066">概念示意，不是工程图，也不表示真实轨迹、速度或大小。</text>
         </svg>
         <p>探索问题：哪两枚火箭顶部差别很大？哪些有侧助推器？为什么飞马座不是从竖直发射台起飞？哪张只是地面模型的照片？</p>
+      </section>
+
+      <section className="panel" aria-labelledby="stage-class-title">
+        <h2 id="stage-class-title">九型火箭，一段一段认</h2>
+        <p>三维展馆里可以短按模型上的一段，或点它的名字。下面是同一套说明：每一段是做什么的，再加上一两件记得住的事。分界对不上公开资料的地方，会直接写“示意”。</p>
+        {models.map((model) => {
+          const lesson = lessonFor(model.id);
+          return (
+            <article key={model.id} className="rocket-lesson" data-lesson={model.id}>
+              <h3>{lesson.title}</h3>
+              <p>{lesson.intro}</p>
+              <ul>
+                {lesson.facts.map((fact) => <li key={fact}>{fact}</li>)}
+              </ul>
+              <ul className="edges">
+                {lesson.stages.map((stage) => (
+                  <li key={stage.id}><strong>{stage.name}。</strong>{stage.blurb}</li>
+                ))}
+              </ul>
+              <p className="muted">{lesson.unclear}</p>
+              <p className="links">
+                {lesson.sources.map((source) => (
+                  <a key={source.href} href={source.href} target="_blank" rel="noreferrer">{source.title}<small>{source.site}</small></a>
+                ))}
+              </p>
+            </article>
+          );
+        })}
       </section>
 
       <section className="panel">
