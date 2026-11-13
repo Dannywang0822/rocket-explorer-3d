@@ -15,6 +15,8 @@ type Props = {
   spin: boolean;
   wire: boolean;
   active: boolean;
+  selectedPart: string | null;
+  onSelectPart: (partId: string | null) => void;
   onSpin: (value: boolean) => void;
   onZoom: (zoom: number) => void;
   onInfo: (info: RocketInfo) => void;
@@ -39,8 +41,10 @@ function canUseWebGL(): 'webgl2' | 'webgl' | null {
   return null;
 }
 
+const TAP_PX = 12;
+
 export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketViewport(
-  { model, spin, wire, active, onSpin, onZoom, onInfo, children },
+  { model, spin, wire, active, selectedPart, onSelectPart, onSpin, onZoom, onInfo, children },
   ref,
 ) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -48,15 +52,19 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
   const spinRef = useRef(spin);
   const wireRef = useRef(wire);
   const activeRef = useRef(active);
+  const selectedRef = useRef(selectedPart);
   const onSpinRef = useRef(onSpin);
   const onZoomRef = useRef(onZoom);
   const onInfoRef = useRef(onInfo);
+  const onSelectRef = useRef(onSelectPart);
   spinRef.current = spin;
   wireRef.current = wire;
   activeRef.current = active;
+  selectedRef.current = selectedPart;
   onSpinRef.current = onSpin;
   onZoomRef.current = onZoom;
   onInfoRef.current = onInfo;
+  onSelectRef.current = onSelectPart;
 
   useImperativeHandle(ref, () => ({
     getOrbit: () => ({ ...orbitRef.current }),
@@ -77,7 +85,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
     canvas.setAttribute('role', 'img');
     canvas.setAttribute(
       'aria-label',
-      `${model.title}。真实三维网格，可左右上下拖动旋转，滚轮或双指缩放。方向键旋转，加减号缩放，Home 复位。`,
+      `${model.title}。短按可选中一段，按住拖动旋转，滚轮或双指缩放。方向键旋转，加减号缩放，Home 复位。`,
     );
     host.replaceChildren(canvas);
 
@@ -104,6 +112,13 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
     let ctx2d: CanvasRenderingContext2D | null = null;
     const disposables: { dispose: () => void }[] = [];
     let paint: (w: number, h: number, orbit: Orbit3) => void = () => {};
+    let rocketMesh: THREE.Mesh | null = null;
+    let baseCol: Float32Array | null = null;
+    const raycaster = new THREE.Raycaster();
+    const pointerNdc = new THREE.Vector2();
+    const sample = new THREE.Vector3();
+    let shownPart = '\0';
+    let lastPoints = 0;
 
     if (mode) {
       try {
@@ -161,6 +176,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
       geometry.setAttribute('position', new THREE.BufferAttribute(pos, 3));
       geometry.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
       geometry.setAttribute('color', new THREE.BufferAttribute(col, 3));
+      baseCol = col.slice();
       solidMat = new THREE.MeshStandardMaterial({
         vertexColors: true,
         roughness: 0.58,
@@ -176,15 +192,16 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
         transparent: true,
         opacity: 0.45,
       });
-      const rocket = new THREE.Mesh(geometry, solidMat);
+      rocketMesh = new THREE.Mesh(geometry, solidMat);
       const wires = new THREE.Mesh(geometry, wireMat);
-      rocket.matrixAutoUpdate = false;
+      rocketMesh.matrixAutoUpdate = false;
       wires.matrixAutoUpdate = false;
-      scene.add(rocket, wires);
+      scene.add(rocketMesh, wires);
       disposables.push(geometry, solidMat, wireMat);
       const glRenderer = renderer;
       const glScene = scene;
       const glCamera = camera;
+      const mesh = rocketMesh;
       paint = (w, h, orbit) => {
         const mat = matrix3(orbit);
         const m4 = new THREE.Matrix4().set(
@@ -193,8 +210,10 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
           mat[2], mat[5], mat[8], 0,
           0, 0, 0, 1,
         );
-        rocket.matrix.copy(m4);
+        mesh.matrix.copy(m4);
+        mesh.updateMatrixWorld(true);
         wires.matrix.copy(m4);
+        wires.updateMatrixWorld(true);
         wires.visible = wireRef.current;
         glCamera.aspect = w / h;
         glCamera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(1 / (3.2 * orbit.zoom)));
@@ -205,6 +224,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
       };
       } catch {
         renderer = null;
+        rocketMesh = null;
         canvas.dataset.renderer = 'canvas2d';
         ctx2d = canvas.getContext('2d');
         onInfoRef.current({
@@ -213,7 +233,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
           faces: built.faces.length,
           parts: built.parts,
         });
-        paint = (w, h, orbit) => paint2d(ctx2d, built, w, h, orbit, wireRef.current);
+        paint = (w, h, orbit) => paint2d(ctx2d, built, w, h, orbit, wireRef.current, selectedRef.current);
       }
     } else {
       ctx2d = canvas.getContext('2d');
@@ -224,11 +244,79 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
         faces: built.faces.length,
         parts: built.parts,
       });
-      paint = (w, h, orbit) => paint2d(ctx2d, built, w, h, orbit, wireRef.current);
+      paint = (w, h, orbit) => paint2d(ctx2d, built, w, h, orbit, wireRef.current, selectedRef.current);
     }
+
+    const applyHighlight = (part: string) => {
+      if (!geometry || !baseCol) return;
+      const attr = geometry.getAttribute('color') as THREE.BufferAttribute;
+      const arr = attr.array as Float32Array;
+      for (let i = 0; i < built.faces.length; i++) {
+        const on = !part || built.faces[i].part === part;
+        for (let k = 0; k < 9; k++) {
+          const src = baseCol[i * 9 + k];
+          arr[i * 9 + k] = on ? src : src * 0.07;
+        }
+      }
+      attr.needsUpdate = true;
+    };
+
+    const pickAt = (clientX: number, clientY: number): string | null => {
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width < 2 || rect.height < 2) return null;
+      if (rocketMesh && camera) {
+        pointerNdc.set(((clientX - rect.left) / rect.width) * 2 - 1, -((clientY - rect.top) / rect.height) * 2 + 1);
+        raycaster.setFromCamera(pointerNdc, camera);
+        const hit = raycaster.intersectObject(rocketMesh, false)[0];
+        if (!hit || hit.faceIndex == null) return null;
+        return built.faces[hit.faceIndex]?.part ?? null;
+      }
+      return pickMesh2d(built, clientX - rect.left, clientY - rect.top, rect.width, rect.height, orbitRef.current);
+    };
+
+    const updatePartPoints = (cssW: number, cssH: number) => {
+      const points: Record<string, { x: number; y: number }> = {};
+      if (rocketMesh && camera) {
+        const groups = new Map<string, number[]>();
+        built.faces.forEach((face, index) => {
+          const list = groups.get(face.part);
+          if (list) list.push(index);
+          else groups.set(face.part, [index]);
+        });
+        for (const [part, indices] of groups) {
+          const budget = indices.length < 40 ? indices.length : 12;
+          const step = Math.max(1, Math.floor(indices.length / budget));
+          for (let n = 0; n < indices.length; n += step) {
+            const face = built.faces[indices[n]];
+            sample.set(
+              (face.v[0][0] + face.v[1][0] + face.v[2][0]) / 3,
+              (face.v[0][1] + face.v[1][1] + face.v[2][1]) / 3,
+              (face.v[0][2] + face.v[1][2] + face.v[2][2]) / 3,
+            );
+            sample.applyMatrix4(rocketMesh.matrixWorld);
+            sample.project(camera);
+            if (sample.x < -0.98 || sample.x > 0.98 || sample.y < -0.98 || sample.y > 0.98) continue;
+            const ndcX = sample.x;
+            const ndcY = sample.y;
+            pointerNdc.set(ndcX, ndcY);
+            raycaster.setFromCamera(pointerNdc, camera);
+            const hit = raycaster.intersectObject(rocketMesh, false)[0];
+            if (hit && hit.faceIndex != null && built.faces[hit.faceIndex]?.part === part) {
+              points[part] = {
+                x: Math.round((ndcX * 0.5 + 0.5) * cssW),
+                y: Math.round((-ndcY * 0.5 + 0.5) * cssH),
+              };
+              break;
+            }
+          }
+        }
+      }
+      canvas.dataset.partPoints = JSON.stringify(points);
+    };
 
     const pointers = new Map<number, { x: number; y: number }>();
     let drag: { id: number; x: number; y: number } | null = null;
+    let gesture: { id: number; x: number; y: number; moved: boolean } | null = null;
     let pinchDist = 0;
     let pinchZoom = 1;
 
@@ -242,10 +330,10 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
         pinchDist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
         pinchZoom = orbitRef.current.zoom;
         drag = null;
+        gesture = null;
         onSpinRef.current(false);
       } else {
-        drag = { id: e.pointerId, x: e.clientX, y: e.clientY };
-        onSpinRef.current(false);
+        gesture = { id: e.pointerId, x: e.clientX, y: e.clientY, moved: false };
       }
     };
     const move = (e: PointerEvent) => {
@@ -256,6 +344,14 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
         const dist = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) || 1;
         orbitRef.current = safeOrbit3({ ...orbitRef.current, zoom: pinchZoom * (dist / pinchDist) });
         publishZoom();
+        return;
+      }
+      if (!gesture || gesture.id !== e.pointerId) return;
+      if (!gesture.moved) {
+        if (Math.hypot(e.clientX - gesture.x, e.clientY - gesture.y) < TAP_PX) return;
+        gesture.moved = true;
+        drag = { id: e.pointerId, x: e.clientX, y: e.clientY };
+        onSpinRef.current(false);
         return;
       }
       if (!drag || drag.id !== e.pointerId) return;
@@ -269,13 +365,20 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
       drag.y = e.clientY;
     };
     const up = (e: PointerEvent) => {
+      const tap = gesture?.id === e.pointerId && !gesture.moved && pointers.size === 1;
       pointers.delete(e.pointerId);
       if (drag?.id === e.pointerId) drag = null;
+      if (gesture?.id === e.pointerId) gesture = null;
       if (pointers.size < 2) pinchDist = 0;
       if (pointers.size === 1) {
         const only = [...pointers.entries()][0];
         drag = { id: only[0], x: only[1].x, y: only[1].y };
+        gesture = { id: only[0], x: only[1].x, y: only[1].y, moved: true };
       }
+      if (!tap) return;
+      const hit = pickAt(e.clientX, e.clientY);
+      const current = selectedRef.current;
+      onSelectRef.current(hit && hit === current ? null : hit);
     };
     const wheel = (e: WheelEvent) => {
       e.preventDefault();
@@ -314,7 +417,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
       raf = requestAnimationFrame(frame);
       const dt = last ? Math.min(50, now - last) : 0;
       last = now;
-      if (spinRef.current && !drag && pointers.size === 0) {
+      if (spinRef.current && !drag && !gesture && pointers.size === 0) {
         const v = orbitRef.current;
         orbitRef.current = safeOrbit3({ ...v, yaw: v.yaw + dt * 0.00028 });
       }
@@ -326,7 +429,17 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
       canvas.dataset.yaw = orbit.yaw.toFixed(4);
       canvas.dataset.pitch = orbit.pitch.toFixed(4);
       canvas.dataset.zoom = orbit.zoom.toFixed(4);
+      const part = selectedRef.current || '';
+      canvas.dataset.selected = part;
+      if (part !== shownPart) {
+        shownPart = part;
+        applyHighlight(part);
+      }
       paint(w, h, orbit);
+      if (now - lastPoints > 250) {
+        lastPoints = now;
+        updatePartPoints(w, h);
+      }
     };
     raf = requestAnimationFrame(frame);
 
@@ -352,7 +465,7 @@ export const RocketViewport = forwardRef<RocketHandle, Props>(function RocketVie
         <div ref={hostRef} className="viewport" />
         {children}
       </div>
-      <p className="drag-hint">按住拖动可以转一圈 · 上下看顶部和喷口 · 滚轮或双指缩放</p>
+      <p className="drag-hint">短按一段会亮起 · 按住拖动转一圈，不会误选 · 滚轮或双指缩放</p>
     </div>
   );
 });
@@ -364,6 +477,7 @@ function paint2d(
   cssH: number,
   orbit: Orbit3,
   wire: boolean,
+  selected: string | null,
 ) {
   if (!ctx) return;
   const dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -394,7 +508,8 @@ function paint2d(
       else ctx.lineTo(x, y);
     });
     ctx.closePath();
-    const rgb = p.f.col.map((x) => Math.round(Math.max(0, Math.min(1, x * light)) * 255)).join(',');
+    const dim = selected && p.f.part !== selected ? 0.07 : 1;
+    const rgb = p.f.col.map((x) => Math.round(Math.max(0, Math.min(1, x * dim * light)) * 255)).join(',');
     ctx.fillStyle = `rgb(${rgb})`;
     ctx.fill();
     if (wire) {
@@ -403,4 +518,39 @@ function paint2d(
       ctx.stroke();
     }
   }
+}
+
+function pickMesh2d(mesh: Mesh3, x: number, y: number, cssW: number, cssH: number, orbit: Orbit3): string | null {
+  const mat = matrix3(orbit);
+  let bestZ = -Infinity;
+  let best: string | null = null;
+  for (const face of mesh.faces) {
+    const pts = face.v.map((p) => {
+      const a = rotate3(p, mat);
+      const k = (cssH * 1.6 * orbit.zoom) / (4.2 - a[2]);
+      return { x: cssW / 2 + a[0] * k, y: cssH / 2 - a[1] * k, z: a[2] };
+    });
+    const z = (pts[0].z + pts[1].z + pts[2].z) / 3;
+    if (z <= bestZ) continue;
+    if (!pointInTri(x, y, pts[0], pts[1], pts[2])) continue;
+    bestZ = z;
+    best = face.part;
+  }
+  return best;
+}
+
+function pointInTri(
+  px: number,
+  py: number,
+  a: { x: number; y: number },
+  b: { x: number; y: number },
+  c: { x: number; y: number },
+): boolean {
+  const sign = (x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) => (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3);
+  const d1 = sign(px, py, a.x, a.y, b.x, b.y);
+  const d2 = sign(px, py, b.x, b.y, c.x, c.y);
+  const d3 = sign(px, py, c.x, c.y, a.x, a.y);
+  const hasNeg = d1 < 0 || d2 < 0 || d3 < 0;
+  const hasPos = d1 > 0 || d2 > 0 || d3 > 0;
+  return !(hasNeg && hasPos);
 }

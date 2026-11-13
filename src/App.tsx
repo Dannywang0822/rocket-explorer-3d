@@ -14,6 +14,7 @@ import { Compare } from './view/Compare';
 import { Gallery } from './view/Gallery';
 import { SimplePhoto } from './view/PhotoFrame';
 import { RocketViewport, type RocketHandle, type RocketInfo } from './view/RocketViewport';
+import { StageAside, StageCard } from './view/StageCard';
 
 type Tab = '3d' | 'photos' | 'compare' | 'catalog' | 'learn';
 
@@ -38,6 +39,7 @@ export default function App() {
   const [catalogFocus, setCatalogFocus] = useState({ id: 'SaturnV-0', nonce: 0 });
   const [compareA, setCompareA] = useState('saturnv');
   const [compareB, setCompareB] = useState('cz5b');
+  const [selectedPart, setSelectedPart] = useState<string | null>(null);
 
   const pool = useMemo(
     () => models.filter((item) => modelCountry === 'all' || (modelCountry === 'RU' ? item.c === 'RU' || item.c === 'SU' : item.c === modelCountry)),
@@ -57,6 +59,7 @@ export default function App() {
 
   const changeModel = (id: string) => {
     setModelID(id);
+    setSelectedPart(null);
     setSpin(false);
     setZoom(1);
     viewport.current?.setOrbit({ ...startOrbit3 });
@@ -135,10 +138,13 @@ export default function App() {
               spin={spin}
               wire={wire}
               active={tab === '3d'}
+              selectedPart={selectedPart}
+              onSelectPart={setSelectedPart}
               onSpin={setSpin}
               onZoom={setZoom}
               onInfo={setInfo}
             />
+            <StageCard modelId={model.id} selected={selectedPart} onSelect={setSelectedPart} />
             <div className="toolbar view-bar" aria-label="视角和缩放">
               <button type="button" disabled={modelPos <= 0} onClick={() => changeModel(pool[modelPos - 1].id)}>前一型</button>
               <button type="button" disabled={modelPos >= pool.length - 1} onClick={() => changeModel(pool[modelPos + 1].id)}>{modelPos + 1}/{pool.length} · 后一型</button>
@@ -175,6 +181,7 @@ export default function App() {
             </p>
           </div>
           <aside className="stage-side readout">
+            <StageAside modelId={model.id} selected={selectedPart} />
             <h2>和真实照片对照</h2>
             <SimplePhoto photo={picture} />
             {model.id === 'falcon9' && (

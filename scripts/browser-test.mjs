@@ -59,6 +59,29 @@ async function canvasState(page) {
   }));
 }
 
+async function waitPart(page, id) {
+  await page.waitForFunction((part) => {
+    const canvas = document.querySelector('canvas[data-rocket-canvas]');
+    if (!canvas?.dataset.partPoints) return false;
+    try {
+      const pts = JSON.parse(canvas.dataset.partPoints);
+      return Number.isFinite(pts[part]?.x) && Number.isFinite(pts[part]?.y);
+    } catch {
+      return false;
+    }
+  }, {}, id);
+}
+
+async function partPoint(page, id) {
+  return page.evaluate((part) => {
+    const canvas = document.querySelector('canvas[data-rocket-canvas]');
+    const pts = JSON.parse(canvas.dataset.partPoints || '{}');
+    const p = pts[part];
+    const rect = canvas.getBoundingClientRect();
+    return { x: rect.x + p.x, y: rect.y + p.y, part };
+  }, id);
+}
+
 async function pixelHash(page) {
   const data = await page.$eval('canvas[data-rocket-canvas]', (canvas) => {
     const gl = canvas.getContext('webgl2') || canvas.getContext('webgl');
@@ -99,6 +122,22 @@ note(first.renderer === 'webgl2' || first.renderer === 'webgl', `renderer ${firs
 note(first.model === 'saturnv', `default model is saturn v (${first.model})`);
 note(Number(first.faces) > 1000, `triangle count ${first.faces}`);
 
+await waitPart(page, 's1');
+const stagePoint = await partPoint(page, 's1');
+const yawBeforeTap = (await canvasState(page)).yaw;
+await page.mouse.click(stagePoint.x, stagePoint.y);
+await page.waitForFunction(() => document.querySelector('[data-stage-lesson]')?.dataset.selected === 's1');
+const stageText = await page.$eval('[data-stage-text]', (el) => el.textContent || '');
+const stageCard = await page.$eval('[data-stage-lesson]', (el) => ({
+  selected: el.dataset.selected || '',
+  disclaimer: el.innerText.includes('不是官方工程模型'),
+}));
+note(stageCard.selected === 's1' && stageCard.disclaimer, 'saturn click selects the first stage and keeps the disclaimer');
+note(stageText.includes('第一级') && stageText.includes('138'), `saturn lesson text: ${stageText.slice(0, 48)}`);
+const yawAfterTap = (await canvasState(page)).yaw;
+note(yawAfterTap === yawBeforeTap, `tap does not rotate (${yawBeforeTap} -> ${yawAfterTap})`);
+await shot(page, 'desktop-saturn-stage.png');
+
 const pixels = await pixelHash(page);
 note(!!pixels && pixels.ink > 80, `webgl pixels ink=${pixels?.ink} bright=${pixels?.bright} ${pixels?.w}x${pixels?.h}`);
 const beforeHash = pixels?.hash;
@@ -128,6 +167,8 @@ const draggedPixels = await pixelHash(page);
 note(dragged.yaw !== beforeYaw, `drag changed yaw ${beforeYaw} -> ${dragged.yaw}`);
 note(dragged.pitch !== first.pitch, `drag changed pitch ${first.pitch} -> ${dragged.pitch}`);
 note(draggedPixels?.hash !== beforeHash, `drag changed framebuffer ${beforeHash} -> ${draggedPixels?.hash}`);
+const selectedAfterDrag = await page.$eval('[data-stage-lesson]', (el) => el.dataset.selected || '');
+note(selectedAfterDrag === 's1', `drag does not change the stage selection (${selectedAfterDrag})`);
 await shot(page, 'desktop-after-drag.png');
 
 await clickText(page, '看底部喷口');
@@ -156,6 +197,16 @@ const heavyPixels = await pixelHash(page);
 note(heavy.model === 'heavy', `switched to heavy (${heavy.model}) faces ${heavy.faces}`);
 note(heavy.faces !== first.faces, 'heavy face count differs from saturn v');
 note(heavyPixels?.hash !== beforeHash, 'heavy framebuffer differs from saturn v');
+await waitPart(page, 'boosters');
+const boosterPoint = await partPoint(page, 'boosters');
+await page.mouse.click(boosterPoint.x, boosterPoint.y);
+await page.waitForFunction(() => document.querySelector('[data-stage-lesson]')?.dataset.selected === 'boosters');
+const boosterText = await page.$eval('[data-stage-text]', (el) => el.textContent || '');
+note(boosterText.includes('侧助推器'), `heavy booster lesson: ${boosterText.slice(0, 48)}`);
+await shot(page, 'desktop-falcon-heavy-booster.png');
+await clickText(page, '看整枚火箭');
+await page.waitForFunction(() => (document.querySelector('[data-stage-lesson]')?.dataset.selected || '') === '');
+note(true, 'clear selection restores the whole rocket');
 await shot(page, 'desktop-falcon-heavy.png');
 
 await clickText(page, '线框');
@@ -187,6 +238,37 @@ note(!/grok\/canvas|cursor\.com\/canvas/i.test(bodyText), 'no private canvas lin
 const html = await page.content();
 note(!html.includes('grok/canvas'), 'no grok/canvas import in DOM');
 
+const lessonCoverage = await page.evaluate(async () => {
+  const names = ['土星五号', '长征二号F', '联盟FG', '猎鹰九号', '长征五号B', '质子M', '重型猎鹰', '长征七号', '苏联N-1'];
+  const missing = [];
+  const seen = [];
+  for (const name of names) {
+    const btn = [...document.querySelectorAll('button')].find((b) => (b.textContent || '').includes(name) && !b.closest('[data-stage-lesson]'));
+    if (!btn) {
+      missing.push(`${name}:button`);
+      continue;
+    }
+    btn.click();
+    await new Promise((r) => setTimeout(r, 80));
+    const card = document.querySelector('[data-stage-lesson]');
+    const ids = [...document.querySelectorAll('[data-stage-id]')].map((el) => el.getAttribute('data-stage-id'));
+    const text = card?.innerText || '';
+    const model = card?.getAttribute('data-model') || '';
+    if (ids.length < 3 || !text.includes('不是官方工程模型')) missing.push(`${name}:${ids.length}`);
+    if (model) seen.push(model);
+  }
+  return { missing, seen: [...new Set(seen)] };
+});
+note(lessonCoverage.missing.length === 0 && lessonCoverage.seen.length === 9, `all 9 models expose stage lessons (${lessonCoverage.missing.join(',') || lessonCoverage.seen.join(',')})`);
+
+await clickText(page, '小课堂');
+await page.waitForSelector('#stage-class-title');
+const classroom = await page.evaluate(() => document.body.innerText);
+note(classroom.includes('九型火箭，一段一段认'), 'classroom lists the nine stage lessons');
+note(classroom.includes('四次试飞都没有成功'), 'N-1 lesson says the flights did not succeed');
+note(classroom.includes('外侧贮箱') && classroom.includes('不是会单独飞走的助推器'), 'proton tanks are not called separable boosters');
+await shot(page, 'desktop-classroom.png');
+
 await clickText(page, '完整目录');
 await page.waitForSelector('#catalog-title');
 note((await page.evaluate(() => document.body.innerText)).includes('394'), 'catalog mentions 394');
@@ -210,6 +292,8 @@ await shot(page, 'desktop-catalog.png');
 
 await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
 await clickText(page, '三维展馆');
+await new Promise((r) => setTimeout(r, 300));
+await clickText(page, '土星五号');
 await new Promise((r) => setTimeout(r, 500));
 const mobile = await canvasState(page);
 note(mobile.renderer === 'webgl2' || mobile.renderer === 'webgl', `mobile renderer ${mobile.renderer}`);
@@ -218,6 +302,13 @@ const mobileBox = await page.$eval('canvas[data-rocket-canvas]', (canvas) => {
   return { x: r.x, y: r.y, width: r.width, height: r.height };
 });
 note(mobileBox.width > 280 && mobileBox.width < 420 && mobileBox.height > 180, `mobile canvas ${Math.round(mobileBox.width)}x${Math.round(mobileBox.height)}`);
+await waitPart(page, 's1');
+const mobileStage = await partPoint(page, 's1');
+await page.touchscreen.tap(mobileStage.x, mobileStage.y);
+await page.waitForFunction(() => document.querySelector('[data-stage-lesson]')?.dataset.selected === 's1');
+const mobileLesson = await page.$eval('[data-stage-text]', (el) => el.textContent || '');
+note(mobileLesson.includes('第一级'), 'mobile tap selects saturn stage and shows the lesson');
+await shot(page, 'mobile-saturn-stage.png');
 await shot(page, 'mobile-saturn.png');
 const tx = mobileBox.x + mobileBox.width * 0.5;
 const ty = mobileBox.y + mobileBox.height * 0.45;
